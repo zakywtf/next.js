@@ -1,31 +1,20 @@
-// import Header from '../components/Header';
+import {useRouter} from 'next/router';
 import Layout from '../components/MyLayout';
-import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
 
-// const indexPageContent = <p>Hello everyone!</p>
+const fontFamily = {
+    fontFamily : 'Courier New',
+    width : '70%'
+}
+
 const Index = props => (
     <Layout>
-    <h1>Batman TV Shows</h1>
-    <ul>
-        {props.shows.map(show => (
-            <li key={show.id}>
-                <Link href="/p/[id]" as={`/p/${show.id}`}>
-                    <a>{show.name}</a>
-                </Link>
-            </li>
-        ))}
-    </ul>
-  </Layout>
+        <h1>About Me</h1>
+        <p style={fontFamily}>
+            I am Nova Zaky Fathoni, 24 years old. I work as a web backend developer. 
+            I have some experience when I worked as a web backend developer. 
+            I am interest in working for companies that can help me develop and improve my skills in programming.
+        </p>
+    </Layout>
 )
-
-Index.getInitialProps = async function(){
-    const res = await fetch('https://api.tvmaze.com/search/shows?q=batman')
-    const data = await res.json()
-    console.log(`Show data fetched. Count: ${data.length}`);
-    return {
-        shows:data.map(entry => entry.show)
-    }
-}
 
 export default Index
